@@ -12,9 +12,9 @@ import { UpdateUserUseCase } from '@um/modules/users/use-cases/update-user.use-c
 
 import { UsersController } from './users.controller';
 
-import type { Role } from '@um/common/enums/role.enum';
 import type { INestApplication } from '@nestjs/common';
 import type { TestingModule } from '@nestjs/testing';
+import type { Role } from '@um/common/enums/role.enum';
 
 describe('UsersController', () => {
   let app: INestApplication;
