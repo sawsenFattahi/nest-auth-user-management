@@ -3,4 +3,5 @@ export const environment = {
   PORT: 'PORT',
   MONGODB_URI: 'MONGODB_URI',
   JWT_SECRET: 'JWT_SECRET',
+  JWT_EXPIRATION: 'JWT_EXPIRATION',
 } as const;
