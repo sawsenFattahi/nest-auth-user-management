@@ -1,6 +1,8 @@
 import { ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
+import { Request } from 'express';
+import * as jwt from 'jsonwebtoken';
 import { Observable } from 'rxjs';
 
 import { IS_PUBLIC_KEY } from '../decorators/public.decorator'; // The key defined in @Public()
@@ -17,8 +19,23 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     if (isPublic) {
       return true; // Allow access without authentication
     }
+    const request: Request = context.switchToHttp().getRequest();
+    const authHeader = request.headers.authorization;
 
-    return super.canActivate(context); // Enforce authentication
+    if (!authHeader) throw new UnauthorizedException('No token provided');
+
+    const token = authHeader.split(' ')[1];
+
+    try {
+      jwt.verify(token, process.env.JWT_SECRET);
+
+      return super.canActivate(context);
+    } catch (error) {
+      if (error.name === 'TokenExpiredError') {
+        throw new UnauthorizedException('Token expired');
+      }
+      throw new UnauthorizedException('Invalid token');
+    }
   }
 
   handleRequest(err, user) {

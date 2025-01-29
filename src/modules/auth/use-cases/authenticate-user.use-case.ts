@@ -29,7 +29,7 @@ export class AuthenticateUserUseCase {
     // Generate the JWT token
     const token = this.jwtService.sign(payload, {
       secret: process.env.JWT_SECRET || 'your-secret-key', // Use environment variable for secret
-      expiresIn: '1h', // Set token expiration time
+      expiresIn: process.env.JWT_EXPIRATION || '1h', // Set token expiration time
     });
 
     return {
