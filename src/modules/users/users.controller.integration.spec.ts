@@ -1,6 +1,6 @@
 import * as request from 'supertest';
 
-import { setupTestApp } from './test-setup';
+import { setupTestApp } from '@um/modules/users/test-setup';
 
 describe('UsersController (Integration Test)', () => {
   let adminToken: string;
