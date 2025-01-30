@@ -7,7 +7,7 @@ import type { Role } from '@um/common/enums/role.enum';
 
 @Schema({ timestamps: true })
 export class User implements IUser {
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   username: string;
 
   @Prop({ required: true })
@@ -16,7 +16,7 @@ export class User implements IUser {
   @Prop({ required: true })
   role: Role;
 
-  @Prop()
+  @Prop({ unique: true })
   email?: string;
 
   @Prop()
