@@ -3,7 +3,7 @@ import * as request from 'supertest';
 
 import { JwtAuthGuard } from '@um/common/guards/jwt-auth.guard';
 import { RolesGuard } from '@um/common/guards/roles.guard';
-import { UserRepositoryAdapter } from '@um/modules/users/database/repositories/user-repository.adapter';
+import { UserRepositoryAdapter } from '@um/modules/users/database/mongo/repositories/user-repository.adapter';
 import { DeleteUserUseCase } from '@um/modules/users/use-cases/delete-user.use-case';
 import { GetAllUsersUseCase } from '@um/modules/users/use-cases/get-all-users.use-case';
 import { GetUserByIdUseCase } from '@um/modules/users/use-cases/get-user-by-id.use-case';

@@ -6,7 +6,7 @@ import { JwtAuthGuard } from '@um/common/guards/jwt-auth.guard';
 import { RolesGuard } from '@um/common/guards/roles.guard';
 import { AuthenticateUserUseCase } from '@um/modules/auth/use-cases/authenticate-user.use-case';
 import { GetUserByIdUseCase } from '@um/modules/users/use-cases/get-user-by-id.use-case';
-import { LogoutUserUseCase } from '@um/modules/users/use-cases/logout.use-case';
+import { LogoutUserUseCase } from '@um/modules/auth/use-cases/logout.use-case';
 import { AuthController } from '@um/modules/auth/auth.controller';
 
 import type { INestApplication } from '@nestjs/common';
