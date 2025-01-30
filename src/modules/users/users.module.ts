@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 
 import { DatabaseModule } from '@um/modules/users/database/mongo/database.module';
-import { UserRepositoryAdapter } from '@um/modules/users/database/repositories/user-repository.adapter';
+import { UserRepositoryAdapter } from '@um/modules/users/database/mongo/repositories/user-repository.adapter';
 import { USER_REPOSITORY_TOKEN } from '@um/modules/users/interfaces/user-repository.interface';
 import { DeleteUserUseCase } from '@um/modules/users/use-cases/delete-user.use-case';
 import { GetAllUsersUseCase } from '@um/modules/users/use-cases/get-all-users.use-case';

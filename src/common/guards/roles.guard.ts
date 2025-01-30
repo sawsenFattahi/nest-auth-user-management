@@ -2,7 +2,7 @@ import { CanActivate, ExecutionContext, ForbiddenException, Injectable } from '@
 import { Reflector } from '@nestjs/core';
 
 import { Role } from '@um/common/enums/role.enum';
-import { UserRepositoryAdapter } from '@um/modules/users/database/repositories/user-repository.adapter';
+import { UserRepositoryAdapter } from '@um/modules/users/database/mongo/repositories/user-repository.adapter';
 
 @Injectable()
 export class RolesGuard implements CanActivate {

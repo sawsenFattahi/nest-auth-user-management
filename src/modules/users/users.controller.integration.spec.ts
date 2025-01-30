@@ -1,23 +1,16 @@
-import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
 
-import { AppModule } from '../../app.module';
-
-import type { INestApplication } from '@nestjs/common';
-import type { TestingModule } from '@nestjs/testing';
+import { setupTestApp } from './test-setup';
 
 describe('UsersController (Integration Test)', () => {
-  let app: INestApplication;
   let adminToken: string;
   let userId: string;
-
+  let app;
+  let connection;
   beforeAll(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule], // Importe toute l'application
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
-    await app.init();
+    const setup = await setupTestApp();
+    app = setup.app;
+    connection = setup.connection;
     const createUserResponse = await request(app.getHttpServer())
       .post('/users')
       .send({
@@ -44,12 +37,14 @@ describe('UsersController (Integration Test)', () => {
   });
 
   afterAll(async () => {
+    await connection.dropDatabase(); // Supprime la base de test
+    await connection.close();
     await app.close();
   });
 
   it('/users (POST) - should create a user', async () => {
     const newUser = {
-      username: 'test-example',
+      username: 'user-example',
       password: 'Password123!',
       name: 'test test',
       email: 'test@example.com',

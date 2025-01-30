@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
+import * as dotenv from 'dotenv';
 import * as Joi from 'joi';
 
 import { JwtAuthGuard } from '@um/common/guards/jwt-auth.guard';
@@ -9,6 +10,8 @@ import { RolesGuard } from '@um/common/guards/roles.guard';
 import { environment } from '@um/config/environment';
 import { AuthModule } from '@um/modules/auth/auth.module';
 import { UsersModule } from '@um/modules/users/users.module';
+
+dotenv.config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
 
 @Module({
   providers: [
@@ -23,6 +26,7 @@ import { UsersModule } from '@um/modules/users/users.module';
   ],
   imports: [
     ConfigModule.forRoot({
+      load: [() => dotenv.config({ path: `.env.${process.env.NODE_ENV || 'development'}` })],
       isGlobal: true,
       validationSchema: Joi.object({
         NODE_ENV: Joi.string().valid('development', 'production', 'test').default('development'),

@@ -6,8 +6,8 @@ import { Roles } from '@um/common/decorators/roles.decorator';
 import { ROLE } from '@um/common/enums/role.enum';
 import { ApiAuthLogout, ApiGetCurrentAuth, ApiLoginAuth } from '@um/modules/auth/swagger';
 import { AuthenticateUserUseCase } from '@um/modules/auth/use-cases/authenticate-user.use-case';
+import { LogoutUserUseCase } from '@um/modules/auth/use-cases/logout.use-case';
 import { GetUserByIdUseCase } from '@um/modules/users/use-cases/get-user-by-id.use-case';
-import { LogoutUserUseCase } from '@um/modules/users/use-cases/logout.use-case';
 
 @ApiTags('Authentication') // Group under "Authentication" in Swagger
 @Controller('auth')
